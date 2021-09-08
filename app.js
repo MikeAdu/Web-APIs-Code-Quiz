@@ -93,4 +93,29 @@ function correct() {
     next();
 }
 
+function next() {
+    currentQuestion++;
+
+    if (currentQuestion > questions.length - 1) {
+        endGame();
+        return;
+    }
+
+    var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+
+    for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
+        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
+        buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
+        if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
+            buttonCode = buttonCode.replace("[ANS]", "correct()");
+        } else {
+            buttonCode = buttonCode.replace("[ANS]", "incorrect()");
+        }
+        quizContent += buttonCode
+    }
+
+
+    document.getElementById("quizBody").innerHTML = quizContent;
+}
+
 
