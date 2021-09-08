@@ -75,7 +75,7 @@ function getScore() {
     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
     <h1>` + localStorage.getItem("highscore") + `</h1><br> 
     
-    <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
+    <button onclick="clearScore()">Clear score!</button><button onclick="resetQuiz()">Play Again!</button>
     
     `;
 
@@ -85,6 +85,35 @@ function getScore() {
 function incorrect() {
     countDown -= 10; 
     next();
+}
+
+function clearScore() {
+    localStorage.setItem("highscore", "");
+    localStorage.setItem("highscoreName",  "");
+
+    resetQuiz();
+}
+
+
+function resetQuiz() {
+    clearInterval(timer);
+    score = 0;
+    currentQuestion = -1;
+    countDown = 0;
+    timer = null;
+
+    document.getElementById("countDown").innerHTML = countDown;
+
+    var quizContent = `
+    <h1>
+        JavaScript Quiz!
+    </h1>
+    <h3>
+        Click to play!   
+    </h3>
+    <button onclick="start()">Start!</button>`;
+
+    document.getElementById("quizBody").innerHTML = quizContent;
 }
 
 
