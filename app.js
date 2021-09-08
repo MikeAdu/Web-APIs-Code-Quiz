@@ -25,10 +25,12 @@ var questions = [{
 }
 ]
 
+
 var score = 0;
 var currentQuestion = -1;
-var countDown =0;
+var countDown = 0;
 var timer;
+
 
 function start() {
 
@@ -82,10 +84,6 @@ function getScore() {
     document.getElementById("quizBody").innerHTML = quizContent;
 }
 
-function incorrect() {
-    countDown -= 10; 
-    next();
-}
 
 function clearScore() {
     localStorage.setItem("highscore", "");
@@ -117,10 +115,17 @@ function resetQuiz() {
 }
 
 
-function correct() {
-    score += 15;
+function incorrect() {
+    countDown -= 15; 
     next();
 }
+
+
+function correct() {
+    score += 20;
+    next();
+}
+
 
 function next() {
     currentQuestion++;
@@ -146,5 +151,3 @@ function next() {
 
     document.getElementById("quizBody").innerHTML = quizContent;
 }
-
-
