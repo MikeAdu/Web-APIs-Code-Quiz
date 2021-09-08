@@ -82,4 +82,15 @@ function getScore() {
     document.getElementById("quizBody").innerHTML = quizContent;
 }
 
+function incorrect() {
+    countDown -= 10; 
+    next();
+}
+
+
+function correct() {
+    score += 15;
+    next();
+}
+
 
